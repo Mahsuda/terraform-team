@@ -10,7 +10,7 @@ region                             	= "us-east-2"
 associate_public_ip_address         = "true"
 user                                = "centos"
 ssh_key_location                    = "~/.ssh/id_rsa"
-nstance_type                        = "t2.micro"
+instance_type                        = "t2.micro"
 
 
 

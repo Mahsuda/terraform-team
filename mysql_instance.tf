@@ -1,4 +1,4 @@
-resource "aws_instance" "web" {
+resource "aws_instance" "mysql" {
   ami             = "${data.aws_ami.centos7.id}"
   instance_type   = "${var.instance_type}"
    subnet_id = "${aws_subnet.public_subnets.id}"
