@@ -2,8 +2,8 @@ module "vpc_cross_region_peering" {
   source = "github.com/grem11n/terraform-aws-vpc-peering?ref=cross-region-peering"
 
   providers = {
-    aws.this = aws.src
-    aws.peer = aws.dst
+    aws.this = aws.default1
+    aws.peer = aws.default2
   }
 
   peer_region             = "us-east-2"
