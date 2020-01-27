@@ -2,7 +2,7 @@ resource "aws_instance" "db-mysql" {
   ami             = "${var.ami}"
   instance_type   = "${var.instance_type}"
   key_name = "${aws_key_pair.deployer.key_name}"
-  subnet_id = "${aws_subnet.private_subnets.id}"
+  subnet_id = "${aws_subnet.Private_Subnet1.id}"
   security_groups = ["allow_ssh"]
   lifecycle{
     prevent_destroy = false
