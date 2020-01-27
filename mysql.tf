@@ -13,10 +13,9 @@ resource "aws_db_instance" "rds" {
   skip_final_snapshot    = "true"
 
 }
-
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_ids   = "${var.private_subnets}"
+  subnet_ids = "${var.private_subnets}"
 
   tags = {
     Name = "My DB subnet group"
