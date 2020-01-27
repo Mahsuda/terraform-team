@@ -9,9 +9,9 @@ resource "aws_instance" "bastion" {
   }
    provisioner "remote-exec" {
     connection {
-      host        = self.public_ip
+      host        = "${self.public_ip}"
       type        = "ssh"
-      user        = var.user
+      user        = "${var.user}"
       private_key = "${file(var.ssh_key_location)}"
       }
       inline = [
