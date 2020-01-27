@@ -1,19 +1,10 @@
-module "vpc_cross_region_peering" {
-  source = "github.com/grem11n/terraform-aws-vpc-peering?ref=cross-region-peering"
-
-  providers = {
-    aws.this = aws.default1
-    aws.peer = aws.default2
-  }
-
-  peer_region             = "us-east-2"
-  this_vpc_id             = "vpc-2ada9250"
-  peer_vpc_id             = "vpc-906f9ffb"
-  cross_region_peering    = true
-  auto_accept_peering     = true
+resource "aws_vpc_peering_connection" "foo" {
+  #peer_owner_id = "${var.peer_owner_id}"
+  peer_vpc_id   = "vpc-906f9ffb"
+  vpc_id        = "vpc-2ada9250"
+  auto_accept   = true
 
   tags = {
-    Name        = "my-peering-connection"
-    Environment = "prod"
+    Name = "VPC Peering between foo and bar"
   }
 }
