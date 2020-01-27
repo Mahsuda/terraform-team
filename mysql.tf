@@ -1,24 +1,29 @@
-resource "aws_db_instance" "rds" {
-  allocated_storage = 20
-  storage_type      = "gp2"
-  engine            = "mysql"
-  engine_version    = "5.7"
-  instance_class    = "db.t2.micro"
-  name              = "wordpress"
-  username          = "wpuser"
-  password          = "wpuser60641"
-  parameter_group_name   = "default.mysql5.7"
-  db_subnet_group_name   = "${aws_db_subnet_group.default.name}"
+resource "aws_instance" "web" {
+  ami             = "${data.aws_ami.centos.id}"
+  instance_type   = "${var.instance_type}"
+  key_name = "${aws_key_pair.deployer.key_name}"
+   associate_public_ip_address = "${var.associate_public_ip_address}"
   vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
-  skip_final_snapshot    = "true"
-
-}
-resource "aws_db_subnet_group" "default" {
-  name       = "main"
-  subnet_ids = "${var.private_subnets}"
-
+  subnet_id      = "${element(aws_subnet.public_subnets.*.id,count.index)}"
+  lifecycle{
+    prevent_destroy = false
+  }
+   provisioner "remote-exec" {
+    connection {
+      host        = "${self.public_ip}"
+      type        = "ssh"
+      user        = "${var.user}"
+      private_key = "${file(var.ssh_key_location)}"
+      }
+      inline = [
+        "sudo yum install mariadb mariadb-server -y",
+        "sudo systemctl start mariadb && sudo systemctl enable mariadb"
+        ]
+      } 
   tags = {
-    Name = "My DB subnet group"
+    Name = "web-server"
+    Name = "bastion-host"
+    Dep = "IT"
+    Group = "April"
   }
 }
-#"${element(var.private_subnets,count.index)}"
