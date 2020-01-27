@@ -1,5 +1,5 @@
 resource "aws_instance" "web" {
-  ami             = var.ami
+  ami             = data.aws_ami.centos7.id
   instance_type   = var.instance_type
    subnet_id = "${aws_subnet.public_subnets.id}"
   key_name = aws_key_pair.deployer.key_name
@@ -10,13 +10,4 @@ resource "aws_instance" "web" {
   tags = {
     Name = "bastion-host"
   }
-}
-
-data "aws_ami" "centos" {
-    filter {
-    name = "root-device-type" 
-    values = ["ebs"] 
-}
-most_recent = true
-owners = var.account_owner
 }

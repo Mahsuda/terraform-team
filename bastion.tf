@@ -1,5 +1,5 @@
 resource "aws_instance" "bastion" {
-  ami             = var.ami
+  ami             = data.aws_ami.centos7.id
   instance_type   = var.instance_type
   associate_public_ip_address = var.associate_public_ip_address
   key_name = aws_key_pair.deployer.key_name
@@ -10,13 +10,4 @@ resource "aws_instance" "bastion" {
   tags = {
     Name = "bastion-host"
   }
-}
-
-data "aws_ami" "centos" {
-    filter {
-    name = "root-device-type" 
-    values = ["ebs"] 
-}
-most_recent = true
-owners = var.account_owner
 }
