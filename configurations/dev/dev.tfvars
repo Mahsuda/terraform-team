@@ -5,8 +5,14 @@ s3_folder_project 					= "default"          #Will be used to set backend.tf
 s3_folder_region 					= "us-east-2"             #Will be used to set backend.tf
 s3_folder_type 						= "state"                   #Will be used to set backend.tf
 s3_tfstate_file 					= "infrastructure.tfstate" #Will be used to set backend.tf
-project                             = "default"
+project                             = "demo"
 region                             	= "us-east-2"
+count_instance                      = "1"
+account_owner                       = "421036666686"
+associate_public_ip_address         = "true"
+user                                = "centos"
+ssh_key_location                    = "~/.ssh/id_rsa"
+
 
 
 
