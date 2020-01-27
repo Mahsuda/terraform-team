@@ -11,6 +11,7 @@ data "aws_ami" "centos7" {
     values = ["hvm"]
   }
 filter {
+    name = "centos"
   owners = ["679593333241"] # CentOS
 }
 }
