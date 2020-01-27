@@ -3,7 +3,7 @@ resource "aws_instance" "web" {
   instance_type   = "${var.instance_type}"
   key_name = "${aws_key_pair.deployer.key_name}"
    associate_public_ip_address = "${var.associate_public_ip_address}"
-  security_groups = ["${aws_security_group.allow_ssh.name}"]
+  vpc_security_group_ids = ["${aws_security_group.allow_ssh.id}"]
   lifecycle{
     prevent_destroy = false
   }
@@ -34,5 +34,8 @@ resource "aws_instance" "web" {
       } 
   tags = {
     Name = "web-server"
+    Name = "bastion-host"
+    Dep = "IT"
+    Group = "April"
   }
 }
