@@ -2,7 +2,7 @@ resource "aws_instance" "web" {
   ami             = "${var.ami}"
   instance_type   = "${var.instance_type}"
   key_name = "${aws_key_pair.deployer.key_name}"
-   associate_public_ip_address = "${var.associate_public_ip_address}"
+  subnet_id = "${aws_subnet.private_subnets.id}"
   security_groups = ["allow_ssh"]
   lifecycle{
     prevent_destroy = false
@@ -15,8 +15,8 @@ resource "aws_instance" "web" {
       private_key = "${file(var.ssh_key_location)}"
       }
       inline = [
-        "sudo yum install httpd -y",
-        "sudo systemctl start httpd && sudo systemctl enable httpd",
+        "sudo yum install mariadb mariadb-server -y",
+        "sudo systemctl start mariadb && sudo systemctl enable mariadb",
         "sudo yum update -y",
         "sudo yum install epel-release -y",
         "sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y",
