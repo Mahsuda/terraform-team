@@ -16,7 +16,7 @@ resource "aws_db_instance" "rds" {
 
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_id      = "${element(aws_subnet.private_subnets.*.id,count.index)}"
+  subnet_ids   = "${element(aws_subnet.private_subnets.*.id,count.index)}"
 
   tags = {
     Name = "My DB subnet group"
