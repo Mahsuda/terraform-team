@@ -3,7 +3,7 @@ resource "aws_instance" "bastion" {
     instance_type   = "${var.instance_type}"
   associate_public_ip_address = "${var.associate_public_ip_address}"
   key_name = "${aws_key_pair.deployer.key_name}"
-  security_groups = ["${aws_security_group.allow_ssh.id}"]
+  security_groups = ["${aws_security_group.allow_ssh.name}"]
   lifecycle{
     prevent_destroy = false
   }
