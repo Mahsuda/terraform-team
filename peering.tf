@@ -1,18 +1,19 @@
-module "single_account_multi_region" {
-  source = "git::https://github.com/grem11n/terraform-aws-vpc-peering.git"
+module "vpc_cross_region_peering" {
+  source = "github.com/grem11n/terraform-aws-vpc-peering?ref=cross-region-peering"
 
   providers = {
-    aws.this = aws.us-east-1
-    aws.peer = aws.us-east-2
+    aws.this = aws.src
+    aws.peer = aws.dst
   }
 
-  this_vpc_id = vpc-2ada9250
-  peer_vpc_id = vpc-906f9ffb
-
-  auto_accept_peering = true
+  peer_region             = "us-east-2"
+  this_vpc_id             = "vpc-2ada9250"
+  peer_vpc_id             = "vpc-906f9ffb"
+  cross_region_peering    = true
+  auto_accept_peering     = true
 
   tags = {
-    Name        = "tf-single-account-multi-region"
-    Environment = "Test"
+    Name        = "my-peering-connection"
+    Environment = "prod"
   }
 }
