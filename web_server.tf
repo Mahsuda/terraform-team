@@ -3,7 +3,7 @@ resource "aws_instance" "web" {
   instance_type   = "${var.instance_type}"
   key_name = "${aws_key_pair.deployer.key_name}"
    associate_public_ip_address = "${var.associate_public_ip_address}"
-  security_groups = ["aallow_ssh"]
+  security_groups = [aws_security_group.allow_ssh.id]
   lifecycle{
     prevent_destroy = false
   }
