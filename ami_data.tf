@@ -10,6 +10,7 @@ data "aws_ami" "centos7" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-
+filter {
   owners = ["679593333241"] # CentOS
+}
 }
