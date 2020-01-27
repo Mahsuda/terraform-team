@@ -16,25 +16,26 @@ resource "aws_instance" "web" {
       private_key = "${file(var.ssh_key_location)}"
       }
       inline = [
-        "sudo yum install httpd -y",
-        "sudo systemctl start httpd && sudo systemctl enable httpd",
         "sudo yum update -y",
         "sudo yum install epel-release -y",
         "sudo yum install http://rpms.remirepo.net/enterprise/remi-release-7.rpm -y",
         "sudo yum-config-manager --enable remi-php70",
-        "sudo yum install php php-gd php-mysql -y",
-        "sudo yum install wget -y",
-        "sudo wget https://wordpress.org/latest.tar.gz",
-        "sudo tar -xf latest.tar.gz",
-        "sudo cp -a wordpress/* /var/www/html",
-        "sudo cp -a /var/www/html/wp-config-sample.php /var/www/html/wp-config.php",
-        "sudo chown -R apache:apache /var/www/html",
+        "sudo touch /etc/yum.repos.d/r1soft.repo",
+        "sudo echo "[r1soft]
+          name=R1Soft Repository Server
+          baseurl=http://repo.r1soft.com/yum/stable/$basearch/
+          enabled=1
+          gpgcheck=0"",
+        "sudo yum install serverbackup-enterprise -y",
+        "sudo serverbackup-setup --user wpuser --pass PASSWORD",
+        "sudo serverbackup-setup --http-port 8080 --https-port 8443",
+        "sudo /etc/init.d/cdp-server restart "
         "sudo sed -i 's/SELINUX=enforcing/SELINUX=disabled/g' /etc/selinux/config",
         "sudo setenforce 0",
         ]
       } 
   tags = {
-    Name = "web-server"
+    Name = "backup"
     Name = "bastion-host"
     Dep = "IT"
     Group = "April"
