@@ -1,5 +1,4 @@
 resource "aws_instance" "web" {
-  count = var.count_instance
   ami             = var.ami
   instance_type   = var.instance_type
    subnet_id = "${aws_subnet.public_subnets.id}"
