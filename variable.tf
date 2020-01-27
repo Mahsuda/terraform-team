@@ -17,7 +17,6 @@ variable "s3_folder_project" {}
 variable "s3_folder_region" {}
 variable "s3_folder_type" {}
 variable "s3_tfstate_file" {}
-v#ariable "account_owner" {}
 variable "associate_public_ip_address" {}
 variable "user" {}
 variable "ssh_key_location" {}
