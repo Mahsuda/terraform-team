@@ -8,18 +8,6 @@ resource "aws_instance" "mysql" {
   lifecycle{
     prevent_destroy = false
   }
-   provisioner "remote-exec" {
-    connection {
-      host        = "${self.public_ip}"
-      type        = "ssh"
-      user        = "${var.user}"
-      private_key = "${file(var.ssh_key_location)}"
-      }
-      inline = [
-        "sudo yum install mariadb mariadb-server -y",
-        "sudo systemctl start mariadb && sudo systemctl enable mariadb"
-        ]
-      } 
   tags = {
     Name = "web-server"
     Name = "bastion-host"
