@@ -11,7 +11,7 @@ associate_public_ip_address         = "true"
 user                                = "centos"
 ssh_key_location                    = "~/.ssh/id_rsa"
 instance_type                        = "t2.micro"
-ami                                 = "ami-4bf3d731"
+#ami                                 = "ami-4bf3d731"
 
 
 
