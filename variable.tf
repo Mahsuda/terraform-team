@@ -22,6 +22,8 @@ variable "associate_public_ip_address" {}
 variable "user" {}
 variable "ssh_key_location" {}
 variable "instance_type" {}
+variable "ami" {}
+
 
 
 
