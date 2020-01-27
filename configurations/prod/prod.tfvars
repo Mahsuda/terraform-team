@@ -1,6 +1,6 @@
-environment                                             = "prod"
+environment                         = "prod"
 s3_region          					= "us-east-2"
-s3_bucket 						= "vpv-creation"   #Will be used to set backend.tf
+s3_bucket 						    = "vpc-creation-karimi"   #Will be used to set backend.tf
 s3_folder_project 					= "default"          #Will be used to set backend.tf
 s3_folder_region 					= "us-east-2"             #Will be used to set backend.tf
 s3_folder_type 						= "state"                   #Will be used to set backend.tf
