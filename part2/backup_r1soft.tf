@@ -8,7 +8,7 @@ resource "aws_instance" "web" {
   lifecycle{
     prevent_destroy = false
   }
- user_data = "${file("./userdata.sh")}"
+ user_data = "${file("../userdata.sh")}"
   tags = {
     Name = "backup"
     Name = "bastion-host"
