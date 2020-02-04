@@ -1,6 +1,6 @@
 environment                         = "dev"
 s3_region          					= "us-east-1"
-s3_bucket 					    	= "vpc-creation-karimi2"   #Will be used to set backend.tf
+s3_bucket 					    	= "mahsuda-task2"   #Will be used to set backend.tf
 s3_folder_project 					= "default"          #Will be used to set backend.tf
 s3_folder_region 					= "us-east-1"             #Will be used to set backend.tf
 s3_folder_type 						= "state"                   #Will be used to set backend.tf
