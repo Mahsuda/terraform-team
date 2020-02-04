@@ -9,7 +9,7 @@ project                             = "demo"
 region                             	= "us-east-1"
 associate_public_ip_address         = "true"
 user                                = "centos"
-ssh_key_location                    = "~/.ssh/id_rsa"
+ssh_key_location                    = "~/.ssh/id_rsa.pub"
 instance_type                        = "t2.micro"
 #ami                                 = "ami-4bf3d731"
 
